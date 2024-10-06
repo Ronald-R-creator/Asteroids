@@ -26,14 +26,18 @@ def main():
     except Exception as e:
         print(f"Error creating Player: {e}")
         return
-        
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+
         screen.fill((0, 0, 0))
+        print("About to draw player")
         player.draw(screen)
+        print("Player drawn")
         pygame.display.flip()
+        print("Display updated")
         clock.tick(60)
         dt = clock.tick(60) / 1000.0
     

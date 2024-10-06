@@ -6,18 +6,22 @@ from constants import *
 class Player(CircleShape):
     def __init__(self, x, y):
         print(f"Player.__init__ called with: x={x}, y={y}")
-        super().__init__(x, y, PLAYER_)
-        rotation = 0
+        super().__init__(x, y, PLAYER_RADIUS)
+        self.rotation = 0
+        print(f"Player initialized with position: {self.position}, radius: {self.radius}")
 
-    # in the player class
-def triangle(self):
-    forward = pygame.Vector2(0, 1).rotate(self.rotation)
-    right = pygame.Vector2(0, 1).rotate(self.rotation + 90) * self.radius / 1.5
-    a = self.position + forward * self.radius
-    b = self.position - forward * self.radius - right
-    c = self.position - forward * self.radius + right
-    return [a, b, c]
+    def triangle(self):
+        forward = pygame.Vector2(0, 1).rotate(self.rotation)
+        right = pygame.Vector2(0, 1).rotate(self.rotation + 90) * self.radius / 1.5
+        a = self.position + forward * self.radius
+        b = self.position - forward * self.radius - right
+        c = self.position - forward * self.radius + right
+        print(f"Triangle points: a={a}, b={b}, c={c}")
+        return [a, b, c]
 
-def draw(self, screen):
-    print(f"Drawing player at position: {self.position}")
-    pygame.draw.polygon(screen, "white", self.triangle(), 2)
+    def draw(self, screen):
+        print(f"Drawing player at position: {self.position}")
+        points = self.triangle()
+        print(f"Drawing polygon with points: {points}")
+        pygame.draw.polygon(screen, "white", points, 2)
+        print("Polygon drawn")
