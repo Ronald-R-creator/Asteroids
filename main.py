@@ -36,6 +36,7 @@ def main():
         print("About to draw player")
         player.draw(screen)
         print("Player drawn")
+        player.update(dt)
         pygame.display.flip()
         print("Display updated")
         clock.tick(60)
