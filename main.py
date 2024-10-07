@@ -1,4 +1,5 @@
 import pygame
+import sys
 from player import Player
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_RADIUS
 from asteroid import Asteroid
@@ -43,7 +44,10 @@ def main():
 
         screen.fill((0, 0, 0))
         updatable.update(dt)
-        print(f"Number of asteroids: {len(asteroid_group)}")
+        for asteroid in asteroid_group:
+            if player.collisions(asteroid):
+                print("Game Over")
+                sys.exit()
         for sprite in drawable:
             sprite.draw(screen)
         pygame.display.flip()
