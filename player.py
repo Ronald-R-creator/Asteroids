@@ -53,6 +53,6 @@ class Player(CircleShape):
     
     def shoot(self):
         shot_position = self.position.copy()
-        shot_direction = pygame.Vector2(0, -1).rotate(-self.rotation)
+        shot_direction = pygame.Vector2(0,1).rotate(self.rotation)
         fired_shot= Shot(shot_position.x,shot_position.y,shot_direction)
         

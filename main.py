@@ -4,7 +4,7 @@ from player import Player
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_RADIUS
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
-
+from shot import Shot
 def game_start():
     print("Starting asteroids!")
 
@@ -28,7 +28,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()    
     dt = 0
-    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
     
     try:
         print(f"Attempting to create Player with: x={SCREEN_WIDTH/2}, y={SCREEN_HEIGHT/2}")
@@ -49,10 +49,20 @@ def main():
             if player.collisions(asteroid):
                 print("Game Over")
                 sys.exit()
+        for shot in list(Shot_group):
+            for asteroid in list(asteroid_group):
+                if shot.collide_with(asteroid):
+                    print(f"Collision detected! Shot pos: {shot.position}, Asteroid pos: {asteroid.position}")
+                    shot.kill()
+                    asteroid.kill()
+                    print(f"Shot killed: {shot not in Shot_group}")
+                    print(f"Asteroid killed: {asteroid not in asteroid_group}")
+                    break
+
         for sprite in drawable:
+            print(f"Drawing {type(sprite).__name__} at position {sprite.position}")
             sprite.draw(screen)
         pygame.display.flip()
-        clock.tick(60)
         dt = clock.tick(60) / 1000.0
     
     
