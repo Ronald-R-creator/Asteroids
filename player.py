@@ -1,9 +1,8 @@
 import pygame
-from constants import PLAYER_RADIUS, PLAYER_TURN_SPEED, PLAYER_SPEED
+from constants import *
 from circleshape import CircleShape
 from shot import Shot
 
-print(f"SHOT_RADIUS in Player: {SHOT_RADIUS}")  # This will work now
 
 class Player(CircleShape):
     def __init__(self, x, y):
@@ -19,7 +18,6 @@ class Player(CircleShape):
         a = self.position + forward * self.radius
         b = self.position - forward * self.radius - right
         c = self.position - forward * self.radius + right
-        print(f"Triangle points: a={a}, b={b}, c={c}")
         return [a, b, c]
 
     def draw(self, screen):

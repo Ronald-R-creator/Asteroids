@@ -13,11 +13,12 @@ updatable = pygame.sprite.Group()
 drawable = pygame.sprite.Group()
 Player.containers = (updatable,drawable)
 asteroid_group = pygame.sprite.Group()
+Shot_group = pygame.sprite.Group()
 Asteroid.containers = (asteroid_group, updatable, drawable)
 print("Asteroid class imported successfully")
 AsteroidField.containers = (updatable,)
 asteroid_field = AsteroidField()
-
+Shot.containers = (Shot_group,updatable,drawable)
 print(f"Screen width: {SCREEN_WIDTH}")
 print(f"Screen height: {SCREEN_HEIGHT}")
 
