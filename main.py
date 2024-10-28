@@ -1,10 +1,11 @@
 import pygame
 import sys
 from player import Player
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_RADIUS
+from constants import *
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
+
 def game_start():
     print("Starting asteroids!")
 
@@ -51,19 +52,19 @@ def main():
             if player.collisions(asteroid):
                 print("Game Over")
                 sys.exit()
+        
         for shot in list(Shot_group):
             for asteroid in list(asteroid_group):
+                
+                
                 if shot.collide_with(asteroid):
                     print("Collision detected!")        
                     shot.kill()
-                    new_asteroids = asteroid.split()
-                    print(f"Split returned: {new_asteroids}")
-                    if new_asteroids:
-                        for new_ast in new_asteroids:
-                            print(f"New asteroid created at {new_ast.position} with radius {new_ast.radius}")
-                        asteroid_group.add(new_asteroids)
-                        print(f"Asteroid group size after adding: {len(asteroid_group)}")
-                    break
+                    asteroid.split()
+                    
+                    
+                    
+                
 
         for sprite in drawable:
             
