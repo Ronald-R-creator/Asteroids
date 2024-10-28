@@ -44,7 +44,9 @@ def main():
                 return
 
         screen.fill((0, 0, 0))
-        updatable.update(dt)
+        for sprite in updatable:
+            sprite.update(dt)
+
         for asteroid in asteroid_group:
             if player.collisions(asteroid):
                 print("Game Over")
@@ -52,15 +54,19 @@ def main():
         for shot in list(Shot_group):
             for asteroid in list(asteroid_group):
                 if shot.collide_with(asteroid):
-                    print(f"Collision detected! Shot pos: {shot.position}, Asteroid pos: {asteroid.position}")
+                    print("Collision detected!")        
                     shot.kill()
-                    asteroid.kill()
-                    print(f"Shot killed: {shot not in Shot_group}")
-                    print(f"Asteroid killed: {asteroid not in asteroid_group}")
+                    new_asteroids = asteroid.split()
+                    print(f"Split returned: {new_asteroids}")
+                    if new_asteroids:
+                        for new_ast in new_asteroids:
+                            print(f"New asteroid created at {new_ast.position} with radius {new_ast.radius}")
+                        asteroid_group.add(new_asteroids)
+                        print(f"Asteroid group size after adding: {len(asteroid_group)}")
                     break
 
         for sprite in drawable:
-            print(f"Drawing {type(sprite).__name__} at position {sprite.position}")
+            
             sprite.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60) / 1000.0
